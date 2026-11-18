@@ -1,0 +1,60 @@
+﻿@model List<AppClinicaOdontologica.Models.PacienteViewModel>
+@{
+    ViewData["Title"] = "Pacientes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Pacientes</h2>
+    <a asp-action="Create" class="btn btn-primary">Novo paciente</a>
+</div>
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erro"]</div>
+}
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-6">
+        <input type="text" name="termo" value="@ViewBag.Termo" class="form-control" placeholder="Buscar por nome ou CPF" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Limpar</a>
+    </div>
+</form>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Nascimento</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Nome</td>
+                <td>@p.Cpf</td>
+                <td>@p.DataNascimento?.ToString("dd/MM/yyyy")</td>
+                <td>@p.Telefone</td>
+                <td>@p.Email</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@p.IdPaciente" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@p.IdPaciente" method="post" class="d-inline"
+                          onsubmit="return confirm('Excluir este paciente?');">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="6" class="text-center text-muted">Nenhum paciente encontrado.</td></tr>
+        }
+    </tbody>
+</table>

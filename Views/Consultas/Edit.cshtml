@@ -1,0 +1,24 @@
+﻿@model AppClinicaOdontologica.Models.ConsultaViewModel
+@{
+    ViewData["Title"] = "Alterar data da consulta";
+}
+
+<h2>Alterar data da consulta</h2>
+
+<p class="mb-1"><strong>Paciente:</strong> @ViewBag.Paciente</p>
+<p><strong>Procedimento:</strong> @ViewBag.Procedimento</p>
+
+<form asp-action="Edit" asp-route-id="@Model.IdConsulta" method="post" class="col-md-6">
+    <input type="hidden" asp-for="IdConsulta" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="DataConsulta" class="form-label"></label>
+        <input type="datetime-local" id="DataConsulta" name="DataConsulta"
+               value="@Model.DataConsulta?.ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
+        <span asp-validation-for="DataConsulta" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar nova data</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

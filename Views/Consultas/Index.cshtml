@@ -1,0 +1,51 @@
+﻿@model List<AppClinicaOdontologica.Models.ConsultaListaItem>
+@{
+    ViewData["Title"] = "Consultas";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Agendamentos</h2>
+    <a asp-action="Create" class="btn btn-primary">Nova consulta</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Data da consulta</th>
+                <th>Paciente</th>
+                <th>CPF</th>
+                <th>Nascimento</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Procedimento</th>
+                <th>Valor</th>
+                <th>Observações</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.DataConsulta.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@c.PacienteNome</td>
+                    <td>@c.PacienteCpf</td>
+                    <td>@c.PacienteNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@c.PacienteTelefone</td>
+                    <td>@c.PacienteEmail</td>
+                    <td>@c.ProcedimentoDescricao</td>
+                    <td>@c.ProcedimentoValor.ToString("C")</td>
+                    <td>@c.Observacoes</td>
+                    <td class="text-end">
+                        <a asp-action="Edit" asp-route-id="@c.IdConsulta" class="btn btn-sm btn-outline-primary">Alterar data</a>
+                    </td>
+                </tr>
+            }
+            @if (!Model.Any())
+            {
+                <tr><td colspan="10" class="text-center text-muted">Nenhuma consulta agendada.</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

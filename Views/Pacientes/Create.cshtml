@@ -1,0 +1,16 @@
+﻿@model AppClinicaOdontologica.Models.PacienteViewModel
+@{
+    ViewData["Title"] = "Novo paciente";
+}
+
+<h2>Novo paciente</h2>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <partial name="_Form" model="Model" />
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,12 @@
+﻿@model AppClinicaOdontologica.Models.ProcedimentoViewModel
+@{
+    ViewData["Title"] = "Editar procedimento";
+}
+
+<h2>Editar procedimento</h2>
+
+<form asp-action="Edit" asp-route-id="@Model.IdProcedimento" method="post" class="col-md-6">
+    <partial name="_Form" model="Model" />
+    <button type="submit" class="btn btn-primary">Salvar alterações</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

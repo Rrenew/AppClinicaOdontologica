@@ -1,0 +1,22 @@
+﻿@model AppClinicaOdontologica.Models.ProcedimentoViewModel
+
+<input type="hidden" asp-for="IdProcedimento" />
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label asp-for="Descricao" class="form-label"></label>
+    <input asp-for="Descricao" class="form-control" />
+    <span asp-validation-for="Descricao" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Valor" class="form-label"></label>
+    <input asp-for="Valor" type="text" class="form-control" placeholder="0,00" />
+    <span asp-validation-for="Valor" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="IdPaciente" class="form-label"></label>
+    <select asp-for="IdPaciente" asp-items="(SelectList)ViewBag.Pacientes" class="form-select">
+        <option value="">Selecione um paciente</option>
+    </select>
+    <span asp-validation-for="IdPaciente" class="text-danger"></span>
+</div>

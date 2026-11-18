@@ -1,0 +1,34 @@
+﻿@model AppClinicaOdontologica.Models.ConsultaViewModel
+@{
+    ViewData["Title"] = "Nova consulta";
+}
+
+<h2>Nova consulta</h2>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="IdProcedimento" class="form-label"></label>
+        <select asp-for="IdProcedimento" asp-items="(SelectList)ViewBag.Procedimentos" class="form-select">
+            <option value="">Selecione o procedimento (paciente)</option>
+        </select>
+        <span asp-validation-for="IdProcedimento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DataConsulta" class="form-label"></label>
+        <input type="datetime-local" id="DataConsulta" name="DataConsulta"
+               value="@Model.DataConsulta?.ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
+        <span asp-validation-for="DataConsulta" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Observacoes" class="form-label"></label>
+        <input asp-for="Observacoes" class="form-control" />
+        <span asp-validation-for="Observacoes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agendar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

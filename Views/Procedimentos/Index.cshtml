@@ -1,0 +1,46 @@
+﻿@model List<AppClinicaOdontologica.Models.Procedimento>
+@{
+    ViewData["Title"] = "Procedimentos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Procedimentos</h2>
+    <a asp-action="Create" class="btn btn-primary">Novo procedimento</a>
+</div>
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erro"]</div>
+}
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Paciente</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Descricao</td>
+                <td>@p.Valor.ToString("C")</td>
+                <td>@p.IdPacienteNavigation.Nome</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@p.IdProcedimento" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@p.IdProcedimento" method="post" class="d-inline"
+                          onsubmit="return confirm('Excluir este procedimento?');">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="4" class="text-center text-muted">Nenhum procedimento cadastrado.</td></tr>
+        }
+    </tbody>
+</table>

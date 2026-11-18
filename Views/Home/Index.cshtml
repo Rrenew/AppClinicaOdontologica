@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<div class="text-center mt-4">
+    <h1 class="display-5">Bem-vindo(a), @User.Identity!.Name</h1>
+    <p class="lead">Use o menu acima para acessar os recursos do sistema.</p>
+</div>
+
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <h5 class="card-title">Pacientes</h5>
+                <p class="card-text">Cadastrar, buscar e editar pacientes.</p>
+                <a asp-controller="Pacientes" asp-action="Index" class="btn btn-primary">Acessar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <h5 class="card-title">Procedimentos</h5>
+                <p class="card-text">Cadastrar procedimentos de um paciente.</p>
+                <a asp-controller="Procedimentos" asp-action="Index" class="btn btn-primary">Acessar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <h5 class="card-title">Consultas</h5>
+                <p class="card-text">Ver agendamentos e alterar datas.</p>
+                <a asp-controller="Consultas" asp-action="Index" class="btn btn-primary">Acessar</a>
+            </div>
+        </div>
+    </div>
+</div>
